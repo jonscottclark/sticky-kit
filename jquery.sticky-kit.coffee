@@ -73,7 +73,7 @@ $.fn.stick_in_parent = (opts={}) ->
 
         el_float = elm.css "float"
         spacer.css({
-          width: elm.outerWidth true
+          width: if elm[0].getBoundingClientRect().width then elm[0].getBoundingClientRect().width else elm.outerWidth true
           height: height
           display: elm.css "display"
           "vertical-align": elm.css "vertical-align"
@@ -159,7 +159,7 @@ $.fn.stick_in_parent = (opts={}) ->
             }
 
             css.width = if elm.css("box-sizing") == "border-box"
-              elm.outerWidth() + "px"
+              if elm[0].getBoundingClientRect().width then elm[0].getBoundingClientRect().width + "px" else elm.outerWidth() + "px"
             else
               elm.width() + "px"
 
